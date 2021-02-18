@@ -1,0 +1,204 @@
+:root {
+    font-size: 62.5%;
+    font-family: 'Permanent Marker', cursive;
+}
+
+/* The Container --> contains: the headline / the switches / the window for animations */
+
+.container {
+    width: 700px;
+    height: 800px;
+    margin: auto auto;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 80px 80px auto;
+    grid-template-areas: 
+        "head head head head"
+        ". switch1 switch2 . "
+        "room room room room";
+    justify-items: center;
+    align-items: center;
+    background-color: aqua;
+    border-radius: 100px;
+
+    }
+/* The headline  */
+
+.headline {
+    grid-area: head;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2rem;
+    text-shadow: 5px 5px 3px grey;
+
+}
+
+
+/* The switches --> hidden checkboxes, but you can click the label  */
+
+label {
+        background: #45f74b;
+        /* padding: 0.5rem 1rem; */
+        display: flex;
+        width: 130px;
+        height: 50px;
+        border-radius: 30px;
+        border: 5px solid blue;
+        /* margin-top: 10px;
+        margin-bottom: 20px; */
+        margin-left: 10px;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        /* box-shadow: 0px 0px 3px blue; */
+    }
+
+
+/* Hiding the checkboxes */
+
+.visually-hidden {
+        position: absolute;
+        left: -100vw;
+}
+
+
+
+/* switches will be added to the grid of the container */
+
+label[for=toggle] {
+        grid-area: switch1;
+        visibility: visible;
+    }
+
+label[for=sunset] {
+        grid-area: switch1;
+        visibility: hidden;
+    }
+
+/* Switch2 becomes visible after the fist switch is checked */
+
+label[for=oozo] {
+    grid-area: switch2;
+    visibility: hidden;
+    /* transition: visibility 0.1s;   */
+}
+
+
+/* Defining the window where animations happen, again a grid layout 
+starts wicht a black background-color
+
+*/
+
+ .room {
+    grid-area: room;
+    background-color: black;
+    background-image: none;
+    background-size: cover;
+    background-position: 20%;
+    width: 80%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "lamp sit"
+        ". oozo";
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    box-shadow: 0 0 20px grey;
+    
+    
+}
+
+/* The sleeping sun starts visible  */
+
+.lamp {
+    grid-area: lamp;
+    width: 250px;
+    height: 200px;
+    visibility: visible;
+   
+}
+
+
+/* The clown starts invisible */
+
+.oozo {
+    width: 150px;
+    height: 190px;
+    grid-area: oozo;
+    visibility: hidden;
+    /* transition: visibility 0.1s; */
+}
+
+
+/* The awaken sun starts invisble */
+
+.sun_awake {
+    grid-area: lamp;
+    width: 250px;
+    height: 200px;
+    visibility: hidden;
+}
+
+
+
+
+/* If the checkbox toggle gets checked, the sleeping sun becomes invisible */
+
+#toggle:checked ~ .room .lamp {
+    visibility: hidden;
+}
+
+/* If the checkbox toggle gets checked, the awaken sun becomes visible */
+
+#toggle:checked ~ .room .sun_awake {
+    visibility: visible;
+}
+
+
+/* If the checkbox toggle gets checked, the the background image is loaded */
+
+#toggle:checked ~ .room {
+
+    background-image: url(./images/beachjpg);
+}
+
+
+/* If the checkbox toggle gets checked, the the button oozo gets visible */
+
+
+#toggle:checked ~ label[for=oozo] {
+    visibility: visible;
+}
+
+
+/* If the checkbox oozo is checked the animation oozo_move starts */
+
+#oozo:checked ~ .room .oozo {
+    animation-name: oozo_move;
+    animation-duration: 4s;
+}
+
+/* This is the definition of the animation */
+
+@keyframes oozo_move {
+    0% {visibility: hidden; transform: translate(60px); }
+    10% {visibility: visible; transform: translate(60px, 20px) rotate(30deg);}
+    20% {visibility: visible; transform: translate(0px, 20px) rotate(-30deg);}
+    30% {visibility: visible; transform: translate(-50px, 20px) rotate(30deg);}
+    40% {visibility: visible; transform: translate(-100px, 20px) rotate(-30deg);}
+    50% {visibility: visible; transform: translate(-150px, 20px)rotate(30deg);}
+    60% {visibility: visible; transform: translate(-200px, 20px) rotate(-30deg);}
+    70% {visibility: visible; transform: translate(-250px, 20px) rotate(30deg);}
+    80% {visibility: visible; transform: translate(-260px, 20px) rotate(-30deg);}
+    90% {visibility: hidden; transform: translate(-280px, 20px);}
+    100% {visibility: hidden; transform: translate(-300px, 20px);}
+}
+
+
+
+/* .sit {
+    grid-area: sit;
+    width: 200px;
+    height: 200px;
+} */
