@@ -38,19 +38,15 @@
 
 label {
         background: #45f74b;
-        /* padding: 0.5rem 1rem; */
         display: flex;
         width: 130px;
         height: 50px;
         border-radius: 30px;
         border: 5px solid blue;
-        /* margin-top: 10px;
-        margin-bottom: 20px; */
         margin-left: 10px;
         justify-content: center;
         align-items: center;
         font-size: 1.5rem;
-        /* box-shadow: 0px 0px 3px blue; */
     }
 
 
@@ -102,7 +98,6 @@ starts wicht a black background-color
     grid-template-areas: 
         "lamp sit"
         ". oozo";
-    /* border: 1px solid black; */
     border-radius: 20px;
     box-shadow: 0 0 20px grey;
     
